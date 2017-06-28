@@ -5,7 +5,6 @@ machine:
     CONTACTS_DB_MIGRATIONS: "/home/ubuntu/.go_project/src/github.com/felicianotech/cci-demo-go/db/migrations"
   post:
     - ls -lah ~/.go_workspace/src/github.com/felicianotech/cci-demo-go
-    - mv ~/cci-demo-go ~/.go_workspace/src/github.com/felicianotech/
 
 dependencies:
   override:
