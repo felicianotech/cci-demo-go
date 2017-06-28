@@ -4,15 +4,15 @@ GOPACKAGES = $(shell go list ./...  | grep -v /vendor/)
 default: build
 
 workdir:
-	mkdir -p workdir
+	mkdir -p ~/.go_workspace/src/github.com/felicianotech/cci-demo-go/workdir
 
 build: workdir/contacts
 
 build-native: $(GOFILES)
-	go build -o workdir/native-contacts .
+	go build -o ~/.go_workspace/src/github.com/felicianotech/cci-demo-go/workdir/native-contacts .
 
 workdir/contacts: $(GOFILES)
-	GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o workdir/contacts .
+	GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o ~/.go_workspace/src/github.com/felicianotech/cci-demo-go/workdir/contacts .
 
 test: test-all
 

@@ -4,7 +4,8 @@ machine:
     CONTACTS_DB_URL: "postgres://root@localhost:5432/circle_test?sslmode=disable"
     CONTACTS_DB_MIGRATIONS: "/home/ubuntu/.go_project/src/github.com/felicianotech/cci-demo-go/db/migrations"
   post:
-    - ls -lah ~/.go_workspace/src/github.com/felicianotech/cci-demo-go
+    - mkdir -p ~/.go_workspace/src/github.com/felicianotech
+    - mv ~/cci-demo-go  ~/.go_workspace/src/github.com/felicianotech/
 
 dependencies:
   override:
@@ -24,6 +25,3 @@ test:
       curl --retry 10 --retry-delay 1 -X POST --header "Content-Type: application/json" -d '{"email":"test@example.com","name":"Test User"}' http://localhost:8080/contacts
   post:
     - echo "end"
-
-general:
-  build_dir: /home/ubuntu/.go_workspace/src/github.com/felicianotech/cci-demo-go
