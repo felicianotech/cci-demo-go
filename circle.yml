@@ -2,7 +2,7 @@ machine:
   environment:
     TEST_RESULTS: "/tmp/test-results"
     CONTACTS_DB_URL: "postgres://root@localhost:5432/circle_test?sslmode=disable"
-    CONTACTS_DB_MIGRATIONS: "/home/ubuntu/.go_project/src/github.com/felicianotech/cci-demo-go/db/migrations"
+    CONTACTS_DB_MIGRATIONS: "/home/ubuntu/.go_workspace/src/github.com/felicianotech/cci-demo-go/db/migrations"
   post:
     - ls -lah ~/.go_workspace/
 
@@ -15,9 +15,9 @@ dependencies:
 test:
   override:
     - trap "go-junit-report <${TEST_RESULTS}/go-test.out > ${TEST_RESULTS}/go-test-report.xml" EXIT
-    - make test | tee ${TEST_RESULTS}/go-test.out
-    - make
-    - ./workdir/contacts:
+    - cd ~/.go_workspace/src/github.com/felicianotech/cci-demo-go && make test | tee ${TEST_RESULTS}/go-test.out
+    - cd ~/.go_workspace/src/github.com/felicianotech/cci-demo-go && make
+    - ~/.go_workspace/src/github.com/felicianotech/cci-demo-go/workdir/contacts:
         background: true
     - |
       sleep 5
