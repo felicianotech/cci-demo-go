@@ -7,7 +7,7 @@ machine:
 dependencies:
   post:
     - go get github.com/jstemmer/go-junit-report
-    - mdir $TEST_RESULTS
+    - mkdir $TEST_RESULTS
     - echo $GOPATH
 test:
   override:
