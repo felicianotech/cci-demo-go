@@ -1,3 +1,9 @@
+machine:
+  environment:
+    TEST_RESULTS: "/tmp/test-results"
+    CONTACTS_DB_URL: "postgres://root@localhost:5432/circle_test?sslmode=disable"
+    CONTACTS_DB_MIGRATIONS: "/go/src/github.com/felicianotech/cci-demo-go/db/migrations"
+
 dependencies:
   post:
     - go get github.com/jstemmer/go-junit-report
