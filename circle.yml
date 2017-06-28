@@ -14,7 +14,7 @@ test:
     - make test | tee ${TEST_RESULTS}/go-test.out
     - pwd
     - ./workdir/contacts
-          background: true
+        background: true
     - |
       curl --retry 10 --retry-delay 1 -X POST --header "Content-Type: application/json" -d '{"email":"test@example.com","name":"Test User"}' http://localhost:8080/contacts
   post:
