@@ -8,14 +8,13 @@ machine:
 
 dependencies:
   override:
-    - mkdir $TEST_RESULTS
-    - echo $GOPATH
+    - mkdir $CIRCLE_TEST_REPORTS/reports
     - go get github.com/jstemmer/go-junit-report
 
 test:
   override:
-    - trap "go-junit-report <${TEST_RESULTS}/go-test.out > ${TEST_RESULTS}/go-test-report.xml" EXIT
-    - cd ~/.go_workspace/src/github.com/felicianotech/cci-demo-go && make test | tee ${TEST_RESULTS}/go-test.out
+    - trap "go-junit-report <${CIRCLE_TEST_REPORTS}/reports/go-test.out > ${CIRCLE_TEST_REPORTS}/reports/go-test-report.xml" EXIT
+    - cd ~/.go_workspace/src/github.com/felicianotech/cci-demo-go && make test | tee ${CIRCLE_TEST_REPORTS}/reports/go-test.out
     - cd ~/.go_workspace/src/github.com/felicianotech/cci-demo-go && make
     - ~/.go_workspace/src/github.com/felicianotech/cci-demo-go/workdir/contacts:
         background: true
