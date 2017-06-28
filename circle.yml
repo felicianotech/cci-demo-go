@@ -4,8 +4,8 @@ machine:
     CONTACTS_DB_URL: "postgres://root@localhost:5432/circle_test?sslmode=disable"
     CONTACTS_DB_MIGRATIONS: "/home/ubuntu/.go_project/src/github.com/felicianotech/cci-demo-go/db/migrations"
   post:
-    - ls -lah ~/.go_workspace/src
-    - ls -lah ~/.go_workspace/src/github.com/
+    - ls -lah ~
+    - ls -lah ~/.go_workspace/
     - mkdir -p ~/.go_workspace/src/github.com/felicianotech
     - mv ~/cci-demo-go  ~/.go_workspace/src/github.com/felicianotech/
 
