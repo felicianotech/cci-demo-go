@@ -15,6 +15,7 @@ test:
     - pwd
     - ./workdir/contacts
           background: true
-    - curl --retry 10 --retry-delay 1 -X POST --header "Content-Type: application/json" -d '{"email":"test@example.com","name":"Test User"}' http://localhost:8080/contacts
+    - |
+      curl --retry 10 --retry-delay 1 -X POST --header "Content-Type: application/json" -d '{"email":"test@example.com","name":"Test User"}' http://localhost:8080/contacts
   post:
     - echo "end"
