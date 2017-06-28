@@ -27,4 +27,4 @@ test:
     - echo "end"
 
 general:
-  build_dir: .go_workspace/src/github.com/felicianotech/cci-demo-go
+  build_dir: /home/ubuntu/.go_workspace/src/github.com/felicianotech/cci-demo-go
