@@ -5,17 +5,19 @@ machine:
     CONTACTS_DB_MIGRATIONS: "/home/ubuntu/.go_project/src/github.com/felicianotech/cci-demo-go/db/migrations"
 
 dependencies:
-  post:
-    - go get github.com/jstemmer/go-junit-report
+  override:
     - mkdir $TEST_RESULTS
+    - go get github.com/jstemmer/go-junit-report
+
 test:
   override:
     - trap "go-junit-report <${TEST_RESULTS}/go-test.out > ${TEST_RESULTS}/go-test-report.xml" EXIT
     - make test | tee ${TEST_RESULTS}/go-test.out
-    - pwd
+    - make
     - ./workdir/contacts:
         background: true
     - |
+      sleep 5
       curl --retry 10 --retry-delay 1 -X POST --header "Content-Type: application/json" -d '{"email":"test@example.com","name":"Test User"}' http://localhost:8080/contacts
   post:
     - echo "end"
