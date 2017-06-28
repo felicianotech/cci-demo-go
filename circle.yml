@@ -1,9 +1,13 @@
 dependencies:
   post:
     - go get github.com/jstemmer/go-junit-report
+    - createdb circle_test
 test:
   override:
     - trap "go-junit-report <${TEST_RESULTS}/go-test.out > ${TEST_RESULTS}/go-test-report.xml" EXIT
     - make test | tee ${TEST_RESULTS}/go-test.out
     - ./workdir/contacts
     - curl --retry 10 --retry-delay 1 -X POST --header "Content-Type: application/json" -d '{"email":"test@example.com","name":"Test User"}' http://localhost:8080/contacts
+  post:
+    - ps aux
+    - ps aux | grep postg
