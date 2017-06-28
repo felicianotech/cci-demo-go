@@ -2,19 +2,18 @@ machine:
   environment:
     TEST_RESULTS: "/tmp/test-results"
     CONTACTS_DB_URL: "postgres://root@localhost:5432/circle_test?sslmode=disable"
-    CONTACTS_DB_MIGRATIONS: "$GOPATH/cci-demo-go/db/migrations"
+    CONTACTS_DB_MIGRATIONS: "~/cci-demo-go/db/migrations"
 
 dependencies:
   post:
     - go get github.com/jstemmer/go-junit-report
     - mkdir $TEST_RESULTS
-    - echo $GOROOT
 test:
   override:
     - trap "go-junit-report <${TEST_RESULTS}/go-test.out > ${TEST_RESULTS}/go-test-report.xml" EXIT
     - make test | tee ${TEST_RESULTS}/go-test.out
     - pwd
-    - ./workdir/contacts
+    - ./workdir/contacts &
     - curl --retry 10 --retry-delay 1 -X POST --header "Content-Type: application/json" -d '{"email":"test@example.com","name":"Test User"}' http://localhost:8080/contacts
   post:
     - echo "end"
