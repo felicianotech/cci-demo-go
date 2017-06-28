@@ -3,11 +3,12 @@ machine:
     TEST_RESULTS: "/tmp/test-results"
     CONTACTS_DB_URL: "postgres://root@localhost:5432/circle_test?sslmode=disable"
     CONTACTS_DB_MIGRATIONS: "/home/ubuntu/.go_project/src/github.com/felicianotech/cci-demo-go/db/migrations"
-    GOPATH: "/home/ubuntu/.go_project;$GOPATH"
+    GOPATH: "/home/ubuntu/.go_project:$GOPATH"
 
 dependencies:
   override:
     - mkdir $TEST_RESULTS
+    - echo $GOPATH
     - go get github.com/jstemmer/go-junit-report
 
 test:
